@@ -1,0 +1,8 @@
+# i3status configuration file
+
+general {
+    output_format =  "i3bar"
+    colors = true
+    interval = 5
+}
+
