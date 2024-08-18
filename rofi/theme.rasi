@@ -1,0 +1,128 @@
+/**
+ * rofi -dump-theme output.
+ * Rofi version: 1.7.3
+ **/
+* {
+/*
+    red:                         rgba ( 220, 50, 47, 100 % );
+    selected-active-foreground:  var(background);
+    lightfg:                     rgba ( 88, 104, 117, 100 % );
+    separator-color:              var(foreground);
+    urgent-foreground:           var(red);
+    alternate-urgent-background: var(lightbg);
+    lightbg:                     rgba ( 255, 0, 0, 100 % );
+    background-color:            transparent;
+    border-color:                var(foreground);
+    normal-background:           var(background);
+    selected-urgent-background:  var(red);
+    alternate-active-background: var(lightbg);
+    spacing:                     2;
+    blue:                        rgba ( 38, 139, 210, 100 % );
+    alternate-normal-foreground: var(foreground);
+    urgent-background:           var(background);
+    selected-normal-foreground:  var(lightbg);
+    active-foreground:           var(blue);
+    background:                  rgba ( 253, 246, 227, 100 % );
+    selected-active-background:  var(blue);
+    active-background:           var(background);
+    selected-normal-background:  var(lightfg);
+    alternate-normal-background: var(lightbg);
+    foreground:                  rgba ( 0, 43, 54, 100 % );
+    selected-urgent-foreground:  var(background);
+    normal-foreground:           var(foreground);
+    alternate-urgent-foreground: var(red);
+    alternate-active-foreground: var(blue);
+*/
+    theme-yellow:                rgba(255, 211, 105, 100%);
+    theme-dark:                  rgba(34, 40, 49, 100%);
+    theme-gray:                  rgba(57, 62, 70, 100%);
+    theme-white:                 rgba(238, 238, 238, 100%);
+    separator-color:             var(theme-gray);
+
+}
+element {
+    padding: 1px ;
+    cursor:  pointer;
+    spacing: 5px ;
+    border:  0;
+}
+element normal {
+    background-color: var(theme-dark);
+    text-color:       var(theme-white);
+}
+element selected {
+    background-color: var(theme-yellow);
+    text-color:       var(theme-dark);
+}
+element-text {
+    background-color: transparent;
+    cursor:           inherit;
+    highlight:        inherit;
+    text-color:       inherit;
+}
+element-icon {
+    background-color: transparent;
+    size:             5px;
+    cursor:           inherit;
+    text-color:       inherit;
+}
+window {
+    font:             "MesloLGM Nerd Font 16";
+    padding:          5;
+    background-color: var(theme-dark);
+    border:           1;
+}
+mainbox {
+    padding: 0;
+    border:  0;
+    background-color: inherit;
+}
+textbox {
+    text-color: var(theme-dark);
+}
+listview {
+    padding:      2px 0px 0px ;
+    scrollbar:    true;
+    spacing:      2px ;
+    fixed-height: 0;
+    background-color: var(theme-dark);
+}
+scrollbar {
+    width:        4px ;
+    padding:      0;
+    handle-width: 8px ;
+    border:       0;
+    handle-color: var(theme-yellow);
+    background-color: var(theme-dark);
+}
+inputbar {
+    padding:    1px ;
+    spacing:    0px ;
+    text-color: var(theme-white);
+    background-color: var(theme-dark);
+    children:   [ "prompt","textbox-prompt-colon","entry","case-indicator" ];
+}
+case-indicator {
+    spacing:    0;
+    text-color: inherit;
+    background-color: inherit;
+}
+entry {
+    text-color:        inherit;
+    cursor:            text;
+    spacing:           0;
+    placeholder-color: Gray;
+    placeholder:       "Type to filter";
+    background-color: inherit;
+}
+prompt {
+    spacing:    0;
+    text-color: inherit;
+    background-color: inherit;
+}
+textbox-prompt-colon {
+    margin:     0px 5px 5px 5px;
+    expand:     false;
+    text-color: inherit;
+    background-color: inherit;
+}

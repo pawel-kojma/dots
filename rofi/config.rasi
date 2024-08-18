@@ -1,3 +1,4 @@
+@theme "theme.rasi"
 configuration {
 /*	modi: "window,run,ssh";*/
 /*	font: "mono 12";*/
