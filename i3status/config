@@ -1,7 +1,44 @@
 # i3status configuration file
 
 general {
-    output_format = "i3bar"
-    colors = true
-    interval = 5
+        output_format = "i3bar"
+        colors = true
+        interval = 5
+	markup = pango
 }
+
+order += "wireless wlan0"
+order += "ethernet enp0s3"
+order += "battery 0"
+order += "memory"
+order += "tztime local"
+
+wireless wlan0 {
+        format_up = "󰖩 (%quality at %essid, %bitrate) %ip"
+        format_down = ""
+}
+
+ethernet enp0s3 {
+        format_up = "󰈁 %ip (%speed)"
+        format_down = ""
+}
+
+battery 0 {
+        format = "<span foreground='#FFD369'>%status</span> %percentage"
+        format_down = "No battery"
+        status_chr = "󰂄"
+        status_bat = "󰁹"
+        status_unk = "󰂑"
+        status_full = "󰁹"
+        path = "/sys/class/power_supply/BAT%d/uevent"
+        low_threshold = 10
+}
+
+tztime local {
+        format = "%d.%m.%y %H:%M"
+}
+
+memory {
+        format = "%used"
+}
+
