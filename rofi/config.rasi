@@ -1,13 +1,13 @@
 @theme "theme.rasi"
 configuration {
-/*	modi: "window,run,ssh";*/
-/*	font: "mono 12";*/
+	modi: "run,drun,ssh,window";
+	font: "MesloLGM Nerd Font 16";
 /*	location: 0;*/
 /*	yoffset: 0;*/
 /*	xoffset: 0;*/
 /*	fixed-num-lines: true;*/
 /*	show-icons: false;*/
-/*	terminal: "rofi-sensible-terminal";*/
+	terminal: "kitty";
 /*	ssh-client: "ssh";*/
 /*	ssh-command: "{terminal} -e {ssh-client} {host} [-p {port}]";*/
 /*	run-command: "{cmd}";*/
