@@ -38,13 +38,12 @@
     theme-gray:                  rgba(57, 62, 70, 100%);
     theme-white:                 rgba(238, 238, 238, 100%);
     separator-color:             var(theme-gray);
-    window-radius:               20px;
 }
 element {
     padding: 0px 0px 0px 5px ;
     cursor:  pointer;
-    spacing: 5px ;
-    border:  0;
+    spacing: 5px;
+    border:  0px;
 }
 element normal {
     background-color: var(theme-dark);
@@ -71,12 +70,10 @@ window {
     padding:          5;
     background-color: var(theme-dark);
     border:           2px;
-    border-radius:    var(window-radius);
     border-color:     var(theme-yellow);
 }
 mainbox {
     padding: 10px;
-    border:  0px;
     background-color: inherit;
 }
 textbox {
