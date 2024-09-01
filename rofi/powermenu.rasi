@@ -1,0 +1,54 @@
+* {
+    theme-yellow:                rgba(255, 211, 105, 100%);
+    theme-dark:                  rgba(34, 40, 49, 100%);
+    theme-gray:                  rgba(57, 62, 70, 100%);
+    theme-white:                 rgba(238, 238, 238, 100%);
+    separator-color:             var(theme-gray);
+    powermenu-items:		 4;
+}
+
+configuration {
+    font: "MesloLGM Nerd Font 40";
+}
+element {
+    cursor:  pointer;
+    background-color: var(theme-dark);
+}
+element-text {
+    horizontal-align: 0.5;
+}
+element-text normal {
+    background-color: var(theme-dark);
+    text-color: var(theme-white);
+}
+element-text selected {
+    background-color: var(theme-dark);
+    text-color: var(theme-yellow);
+}
+element-icon {
+    enabled: false;
+}
+window {
+    padding:          5;
+    background-color: var(theme-dark);
+    border:           2px;
+    border-color:     var(theme-yellow);
+    children: [ listview ];
+}
+message {
+    enabled: false;
+}
+inputbar {
+    enabled: false;
+}
+listview {
+    scrollbar:    false;
+    spacing:      10px;
+    columns:      4;
+    lines:        1;
+    border:       0;
+    cycle:        false;
+    background-color: var(theme-dark);
+    flow:       horizontal;
+}
+
