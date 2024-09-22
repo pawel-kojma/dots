@@ -33,5 +33,26 @@ require("lazy").setup({
             })
         end,
     },
+    {
+        "neovim/nvim-lspconfig",
+    },
+    {
+        "williamboman/mason.nvim",
+        config = function()
+            require("mason").setup()
+        end,
+        lazy = false,
+    },
+    {
+        "williamboman/mason-lspconfig.nvim",
+        dependencies = {"mason.nvim"},
+        config = function()
+            require("mason-lspconfig").setup_handlers({
+                function(server_name)
+                    require("lspconfig")[server_name].setup({})
+                end,
+            })
+        end,
+    },
 })
 
