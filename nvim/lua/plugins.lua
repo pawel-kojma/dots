@@ -2,7 +2,7 @@
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
   local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  local out = vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -45,7 +45,7 @@ require("lazy").setup({
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = {"mason.nvim"},
+        dependencies = {"mason.nvim", "nvim-lspconfig"},
         config = function()
             require("mason-lspconfig").setup_handlers({
                 function(server_name)
