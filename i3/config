@@ -27,7 +27,7 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/.config/images/garfield_lock.png
+exec --no-startup-id xss-lock --ignore-sleep -- i3lock --nofork -i ~/.config/images/garfield_lock.png
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
@@ -45,7 +45,7 @@ bindsym XF86TouchpadOn exec --no-startup-id ~/.config/scripts/i3_toggle_touchpad
 bindsym XF86TouchpadOff exec --no-startup-id ~/.config/scripts/i3_toggle_touchpad.sh disable && $refresh_i3status
 bindsym XF86MonBrightnessUp exec --no-startup-id brightnessctl set 5%+ && $refresh_i3status
 bindsym XF86MonBrightnessDown exec --no-startup-id brightnessctl set 5%- && $refresh_i3status
-bindsym Print exec --no-startup-id flameshot launcher && $refresh_i3status
+bindsym $mod+Shift+p exec --no-startup-id loginctl lock-session 
 
 # use these keys for focus, movement, and resize directions when reaching for
 # the arrows is not convenient
