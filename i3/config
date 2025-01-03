@@ -27,14 +27,17 @@ exec --no-startup-id dex --autostart --environment i3
 
 # xss-lock grabs a logind suspend inhibit lock and will use i3lock to lock the
 # screen before suspend. Use loginctl lock-session to lock your screen.
-exec --no-startup-id xss-lock --ignore-sleep -- i3lock --nofork -i ~/.config/images/garfield_lock.png
+exec --no-startup-id xss-lock --transfer-sleep-lock -- i3lock --nofork -i ~/.config/images/garfield_lock.png
+
+# Feh wallpaper
+exec --no-startup-id feh --bg-fill ~/.config/images/wallpaper.jpg
 
 # NetworkManager is the most popular way to manage wireless networks on Linux,
 # and nm-applet is a desktop environment-independent system tray GUI for it.
 exec --no-startup-id nm-applet
 
 # Picom
-exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+#exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
 # Use amixer to adjust volume in ALSA.
 set $refresh_i3status killall -SIGUSR1 i3status
