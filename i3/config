@@ -37,7 +37,7 @@ exec --no-startup-id feh --bg-fill ~/.config/images/wallpaper.jpg
 exec --no-startup-id nm-applet
 
 # Picom
-#exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
+exec --no-startup-id picom --config ~/.config/picom/picom.conf -b
 
 # Use amixer to adjust volume in ALSA.
 set $refresh_i3status killall -SIGUSR1 i3status
@@ -72,6 +72,9 @@ bindsym $mod+Shift+q kill
 
 # start rofi application launcher
 bindsym $mod+d exec --no-startup-id rofi -modi "drun" -config "~/.config/rofi/config.rasi" -show drun
+
+# powermenu
+bindsym $mod+q exec --no-startup-id ~/.config/rofi/scripts/powermenu.sh
 
 # A more modern dmenu replacement is rofi:
 # bindsym $mod+d exec "rofi -modi drun,run -show drun"

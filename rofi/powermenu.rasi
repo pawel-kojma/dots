@@ -3,12 +3,13 @@
     theme-dark:                  rgba(34, 40, 49, 100%);
     theme-gray:                  rgba(57, 62, 70, 100%);
     theme-white:                 rgba(238, 238, 238, 100%);
+    red:                 rgba(255, 0, 0, 100%);
     separator-color:             var(theme-gray);
     powermenu-items:		 4;
 }
 
 configuration {
-    font: "MesloLGM Nerd Font 40";
+    font: "MesloLGM Nerd Font 60";
 }
 element {
     cursor:  pointer;
@@ -29,6 +30,7 @@ element-icon {
     enabled: false;
 }
 window {
+    width:      400px;
     padding:          5;
     background-color: var(theme-dark);
     border:           2px;
@@ -44,7 +46,7 @@ inputbar {
 listview {
     scrollbar:    false;
     spacing:      10px;
-    columns:      4;
+    columns:      var(powermenu-items);
     lines:        1;
     border:       0;
     cycle:        false;

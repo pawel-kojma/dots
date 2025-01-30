@@ -17,7 +17,7 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"c","lua","vim","vimdoc","query","ocaml"},
+                ensure_installed = {"c","lua","vim","vimdoc","query","ocaml","javascript","markdown","menhir","python","typescript","sql"},
                 highlight = {
                     enable = true,
                 },

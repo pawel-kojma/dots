@@ -7,13 +7,13 @@ general {
 	markup = pango
 }
 
-order += "wireless wlp1s0"
+order += "wireless wlan0"
 order += "ethernet enp0s3"
 order += "battery 0"
 order += "memory"
 order += "tztime local"
 
-wireless wlp1s0 {
+wireless wlan0 {
         format_up = "󰖩  %essid"
         format_down = ""
 }

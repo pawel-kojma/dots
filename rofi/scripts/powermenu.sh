@@ -5,15 +5,12 @@ LOGOUT="󰍃"
 LOCK="󰌾"
 REBOOT="󰜉"
 
-if [[ -z "$@" ]] then
-	echo $SHUTDOWN
-	echo $LOGOUT
-	echo $LOCK
-	echo $REBOOT
-	exit 0
-fi
+CHOICE=$(echo "$SHUTDOWN
+$LOGOUT
+$LOCK
+$REBOOT" | rofi -dmenu -theme ~/.config/rofi/powermenu.rasi)
 
-case "$@" in
+case $CHOICE in
 	$SHUTDOWN)
 	systemctl poweroff
 	;;

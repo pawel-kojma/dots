@@ -11,7 +11,7 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 
 -- Line wrap
-vim.opt.wrap = false
+vim.opt.wrap = true
 
 -- Scroll
 vim.opt.scrolloff = 999
