@@ -1,8 +1,8 @@
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not vim.loop.fs_stat(lazypath) then
-  local lazyrepo = "https://github.com/folke/lazy.nvim.git"
-  vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
+    local lazyrepo = "https://github.com/folke/lazy.nvim.git"
+    vim.fn.system({ "git", "clone", "--filter=blob:none", "--branch=stable", lazyrepo, lazypath })
 end
 vim.opt.rtp:prepend(lazypath)
 
@@ -17,8 +17,8 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"c", "cpp", "lua", "vim", "vimdoc", "query", "ocaml",
-                            "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja"},
+                ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "ocaml",
+                    "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja" },
                 highlight = {
                     enable = true,
                 },
@@ -45,10 +45,10 @@ require("lazy").setup({
             vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
             vim.keymap.set("n", "<leader>st", builtin.filetypes, { desc = "[S]earch File[t]ypes" })
             vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
-            vim.keymap.set("n", "<leader>/", function ()
+            vim.keymap.set("n", "<leader>/", function()
                 builtin.current_buffer_fuzzy_find(
-                require("telescope.themes")
-                .get_dropdown({previewer = false, winblend = 10,}))
+                    require("telescope.themes")
+                    .get_dropdown({ previewer = false, winblend = 10, }))
             end, { desc = "Search current buffer" })
         end,
     },
@@ -58,7 +58,7 @@ require("lazy").setup({
     },
     {
         "williamboman/mason-lspconfig.nvim",
-        dependencies = {"mason.nvim"},
+        dependencies = { "mason.nvim" },
     },
     {
         "neovim/nvim-lspconfig",
@@ -66,16 +66,16 @@ require("lazy").setup({
             "williamboman/mason-lspconfig.nvim",
             "nvim-telescope/telescope.nvim"
         },
-        config = function ()
+        config = function()
             vim.api.nvim_create_autocmd('LspAttach', {
                 callback = function(args)
                     -- Delete some default keybinds, set omnifunc
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
                     vim.keymap.del('n', 'K', { buffer = args.buf })
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
-                    local map = function (mode, bind, func, cond)
+                    local map = function(mode, bind, func, cond)
                         if client ~= nil and client.supports_method(cond) then
-                            vim.keymap.set(mode, bind, func, {buffer = args.buf})
+                            vim.keymap.set(mode, bind, func, { buffer = args.buf })
                         end
                     end
                     local builtins = require("telescope.builtin")
@@ -88,6 +88,8 @@ require("lazy").setup({
                     map('n', "gI", builtins.lsp_implementations, 'textDocument/implementation')
                     map('n', "<leader>ds", builtins.lsp_document_symbols, 'textDocument/documentSymbol')
                     map('n', "<leader>ws", builtins.lsp_dynamic_workspace_symbols, 'workspace/symbol')
+                    map('n', "<leader>f", function() vim.lsp.buf.format({ bufnr = args.buf, id = client.id or nil}) end,
+                        'textDocument/formatting')
                 end,
             })
             local servers = {
@@ -108,7 +110,7 @@ require("lazy").setup({
             }
             require("mason-lspconfig").setup({
                 handlers = {
-                    function (server_name)
+                    function(server_name)
                         local server = servers[server_name] or {}
                         require("lspconfig")[server_name].setup(server)
                     end,
@@ -136,4 +138,3 @@ require("lazy").setup({
         },
     },
 })
-
