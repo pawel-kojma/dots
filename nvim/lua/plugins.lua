@@ -88,7 +88,7 @@ require("lazy").setup({
                     map('n', "gI", builtins.lsp_implementations, 'textDocument/implementation')
                     map('n', "<leader>ds", builtins.lsp_document_symbols, 'textDocument/documentSymbol')
                     map('n', "<leader>ws", builtins.lsp_dynamic_workspace_symbols, 'workspace/symbol')
-                    map('n', "<leader>f", function() vim.lsp.buf.format({ bufnr = args.buf, id = client.id or nil}) end,
+                    map('n', "<leader>f", function() vim.lsp.buf.format({ bufnr = args.buf, id = client.id or nil }) end,
                         'textDocument/formatting')
                 end,
             })
@@ -137,4 +137,15 @@ require("lazy").setup({
             },
         },
     },
+    {
+        'stevearc/oil.nvim',
+        ---@module 'oil'
+        ---@type oil.SetupOpts
+        opts = {},
+        -- Optional dependencies
+        dependencies = { { "echasnovski/mini.icons", opts = {} } },
+        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
+        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
+        lazy = false,
+    }
 })
