@@ -17,7 +17,7 @@ require("lazy").setup({
         "nvim-treesitter/nvim-treesitter",
         config = function()
             require("nvim-treesitter.configs").setup({
-                ensure_installed = {"c", "lua", "vim", "vimdoc", "query", "ocaml",
+                ensure_installed = {"c", "cpp", "lua", "vim", "vimdoc", "query", "ocaml",
                             "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja"},
                 highlight = {
                     enable = true,
@@ -75,7 +75,7 @@ require("lazy").setup({
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     local map = function (mode, bind, func, cond)
                         if client ~= nil and client.supports_method(cond) then
-                            vim.keymap.set(mode, bind, func)
+                            vim.keymap.set(mode, bind, func, {buffer = args.buf})
                         end
                     end
                     local builtins = require("telescope.builtin")
