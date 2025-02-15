@@ -78,9 +78,16 @@ require("lazy").setup({
                             vim.keymap.set(mode, bind, func)
                         end
                     end
-                    map({'n', 'v'}, "<leader>h", vim.lsp.buf.hover, 'textDocument/hover')
-                    map({'n', 'v'}, "gd", vim.lsp.buf.definition, 'textDocument/definition')
-                    map({'n', 'v'}, "<leader>r", vim.lsp.buf.rename, 'textDocument/rename')
+                    local builtins = require("telescope.builtin")
+                    map('n', "<leader>h", vim.lsp.buf.hover, 'textDocument/hover')
+                    map('n', "<leader>r", vim.lsp.buf.rename, 'textDocument/rename')
+                    map('n', "gd", builtins.lsp_definitions, 'textDocument/definition')
+                    map('n', "gD", vim.lsp.buf.declaration, 'textDocument/declaration')
+                    map('n', "gr", builtins.lsp_references, 'textDocument/references')
+                    map('n', "gt", builtins.lsp_type_definitions, 'textDocument/typeDefinition*')
+                    map('n', "gI", builtins.lsp_implementations, 'textDocument/implementation')
+                    map('n', "<leader>ds", builtins.lsp_document_symbols, 'textDocument/documentSymbol')
+                    map('n', "<leader>ws", builtins.lsp_dynamic_workspace_symbols, 'workspace/symbol')
                 end,
             })
             local servers = {
