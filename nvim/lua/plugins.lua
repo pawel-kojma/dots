@@ -18,7 +18,7 @@ require("lazy").setup({
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "ocaml",
-                    "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja" },
+                    "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja", "rust", "json", "circom", "bash" },
                 highlight = {
                     enable = true,
                 },
@@ -37,10 +37,11 @@ require("lazy").setup({
     {
         "nvim-telescope/telescope.nvim",
         tag = "0.1.8",
-        dependencies = { "nvim-lua/plenary.nvim" },
+        dependencies = { "nvim-lua/plenary.nvim", "stevearc/oil.nvim" },
         config = function()
             local builtin = require("telescope.builtin")
-            vim.keymap.set("n", "<leader>sf", builtin.find_files, { desc = "[S]earch [F]iles" })
+            vim.keymap.set("n", "<leader>sf", builtin.find_files,
+                { desc = "[S]earch [F]iles" })
             vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch with [G]rep" })
             vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
             vim.keymap.set("n", "<leader>st", builtin.filetypes, { desc = "[S]earch File[t]ypes" })
@@ -94,8 +95,9 @@ require("lazy").setup({
             })
             local servers = {
                 clangd = {},
-                pyright = {},
                 ocamllsp = {},
+                pylsp = {},
+                bashls = {},
                 lua_ls = {
                     settings = {
                         Lua = {
@@ -111,12 +113,19 @@ require("lazy").setup({
             require("mason-lspconfig").setup({
                 handlers = {
                     function(server_name)
-                        local server = servers[server_name] or {}
-                        require("lspconfig")[server_name].setup(server)
+                        if servers[server_name] ~= nil then
+                            local server = servers[server_name]
+                            require("lspconfig")[server_name].setup(server)
+                        end
                     end,
                 }
             })
         end
+    },
+    {
+        'mrcjkb/rustaceanvim',
+        version = '^5', -- Recommended
+        lazy = false,   -- This plugin is already lazy
     },
     {
         "gbprod/cutlass.nvim",

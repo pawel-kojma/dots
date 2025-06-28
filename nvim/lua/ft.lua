@@ -5,5 +5,6 @@ vim.filetype.add({
         mly = "menhir",
         h = "c",
         hpp = "cpp",
+        circom = "circom",
     }
 })

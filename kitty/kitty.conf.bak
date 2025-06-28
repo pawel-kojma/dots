@@ -2251,6 +2251,6 @@ map kitty_mod+n set_tab_title
 
 
 # BEGIN_KITTY_THEME
-# 1984 Orwellian
+# 1984 Light
 include current-theme.conf
 # END_KITTY_THEME
