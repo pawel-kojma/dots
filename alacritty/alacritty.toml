@@ -31,3 +31,13 @@ blue = '#91aafa'
 magenta = '#ee7de6'
 cyan = '#27c3d9'
 white = '#f5f7f7'
+
+[font]
+normal = { family = "MesloLGM Nerd Font Mono" }
+bold = { style = "Bold" }
+italic = { style = "Italic" }
+bold_italic = { style = "Bold Italic" }
+size = 13
+
+[cursor]
+style = { shape = "Block", blinking = "Off" }
