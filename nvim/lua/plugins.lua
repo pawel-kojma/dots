@@ -18,7 +18,8 @@ require("lazy").setup({
         config = function()
             require("nvim-treesitter.configs").setup({
                 ensure_installed = { "c", "cpp", "lua", "vim", "vimdoc", "query", "ocaml",
-                    "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja", "rust", "json", "circom", "bash" },
+                    "javascript", "markdown", "menhir", "python", "typescript", "sql", "jinja", "rust", "json", "circom",
+                    "bash" },
                 highlight = {
                     enable = true,
                 },
@@ -55,10 +56,12 @@ require("lazy").setup({
     },
     {
         "williamboman/mason.nvim",
+        version = "1.11.0",
         opts = {},
     },
     {
         "williamboman/mason-lspconfig.nvim",
+        version = "1.32.0",
         dependencies = { "mason.nvim" },
     },
     {
@@ -153,11 +156,20 @@ require("lazy").setup({
         -- Optional dependencies
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         config = function()
-            require("oil").setup({})
+            require("oil").setup({
+                view_options = {
+                    show_hidden = true,
+                    is_always_hidden = function(name, bufnr)
+                        local m = name:match("%.%.")
+                        return m ~= nil
+                    end,
+                }
+            })
         end,
         -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
         -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
         lazy = false,
     },
-    { 'akinsho/git-conflict.nvim', tag = "v2.1.0", config = true }
+    { 'akinsho/git-conflict.nvim', tag = "v2.1.0", config = true },
+    { 'sangdol/mintabline.vim' }
 })
