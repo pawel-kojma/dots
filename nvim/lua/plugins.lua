@@ -94,29 +94,42 @@ require("lazy").setup({
             "nvim-telescope/telescope.nvim"
         },
         config = function()
-            vim.api.nvim_create_autocmd('LspAttach', {
+            vim.api.nvim_create_autocmd("LspAttach", {
                 callback = function(args)
                     -- Delete some default keybinds, set omnifunc
                     vim.bo[args.buf].omnifunc = "v:lua.vim.lsp.omnifunc"
-                    vim.keymap.del('n', 'K', { buffer = args.buf })
+                    vim.keymap.del("n", "K", { buffer = args.buf })
                     local client = vim.lsp.get_client_by_id(args.data.client_id)
                     local map = function(mode, bind, func, cond)
                         if client ~= nil and client.supports_method(cond) then
                             vim.keymap.set(mode, bind, func, { buffer = args.buf })
+                        else
+                            vim.keymap.set(mode, bind, function()
+                                    vim.notify(cond .. " LSP feature is not supported")
+                                end,
+                                { buffer = args.buf })
                         end
                     end
-                    local builtins = require("telescope.builtin")
-                    map('n', "<leader>h", vim.lsp.buf.hover, 'textDocument/hover')
-                    map('n', "<leader>r", vim.lsp.buf.rename, 'textDocument/rename')
-                    map('n', "gd", builtins.lsp_definitions, 'textDocument/definition')
-                    map('n', "gD", vim.lsp.buf.declaration, 'textDocument/declaration')
-                    map('n', "gr", builtins.lsp_references, 'textDocument/references')
-                    map('n', "gt", builtins.lsp_type_definitions, 'textDocument/typeDefinition*')
-                    map('n', "gI", builtins.lsp_implementations, 'textDocument/implementation')
-                    map('n', "<leader>ds", builtins.lsp_document_symbols, 'textDocument/documentSymbol')
-                    map('n', "<leader>ws", builtins.lsp_dynamic_workspace_symbols, 'workspace/symbol')
-                    map('n', "<leader>f", function() vim.lsp.buf.format({ bufnr = args.buf, id = client.id or nil }) end,
-                        'textDocument/formatting')
+                    local builtin = require("telescope.builtin")
+                    if client.config.root_dir ~= nil then
+                        vim.keymap.set("n", "<leader>sf", function()
+                            return builtin.find_files({ cwd = client.config.root_dir })
+                        end, { buffer = args.buf })
+                        vim.keymap.set("n", "<leader>gf", function()
+                            return builtin.live_grep({ cwd = client.config.root_dir })
+                        end, { buffer = args.buf })
+                    end
+                    map("n", "<leader>h", vim.lsp.buf.hover, "textDocument/hover")
+                    map("n", "<leader>r", vim.lsp.buf.rename, "textDocument/rename")
+                    map("n", "gd", builtin.lsp_definitions, "textDocument/definition")
+                    map("n", "gD", vim.lsp.buf.declaration, "textDocument/declaration")
+                    map("n", "gr", builtin.lsp_references, "textDocument/references")
+                    map("n", "gt", builtin.lsp_type_definitions, "textDocument/typeDefinition*")
+                    map("n", "gI", builtin.lsp_implementations, "textDocument/implementation")
+                    map("n", "<leader>ds", builtin.lsp_document_symbols, "textDocument/documentSymbol")
+                    map("n", "<leader>ws", builtin.lsp_dynamic_workspace_symbols, "workspace/symbol")
+                    map("n", "<leader>f", function() vim.lsp.buf.format({ bufnr = args.buf, id = client.id or nil }) end,
+                        "textDocument/formatting")
                 end,
             })
             local servers = {
@@ -128,10 +141,10 @@ require("lazy").setup({
                     settings = {
                         Lua = {
                             completion = {
-                                callSnippet = 'Replace',
+                                callSnippet = "Replace",
                             },
                             -- You can toggle below to ignore Lua_LS's noisy `missing-fields` warnings
-                            diagnostics = { disable = { 'missing-fields' } },
+                            diagnostics = { disable = { "missing-fields" } },
                         },
                     }
                 }
@@ -149,8 +162,8 @@ require("lazy").setup({
         end
     },
     {
-        'mrcjkb/rustaceanvim',
-        version = '^5', -- Recommended
+        "mrcjkb/rustaceanvim",
+        version = "^5", -- Recommended
         lazy = false,   -- This plugin is already lazy
     },
     {
@@ -173,7 +186,7 @@ require("lazy").setup({
         },
     },
     {
-        'stevearc/oil.nvim',
+        "stevearc/oil.nvim",
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         config = function()
             require("oil").setup({
@@ -188,22 +201,22 @@ require("lazy").setup({
         end,
         lazy = false,
     },
-    { 'akinsho/git-conflict.nvim', tag = "v2.1.0", config = true },
-    { 'sangdol/mintabline.vim' },
+    { "akinsho/git-conflict.nvim", tag = "v2.1.0", config = true },
+    { "sangdol/mintabline.vim" },
     {
-        'saghen/blink.cmp',
-        dependencies = { 'rafamadriz/friendly-snippets' },
+        "saghen/blink.cmp",
+        dependencies = { "rafamadriz/friendly-snippets" },
 
-        version = '1.*',
+        version = "1.*",
         opts = {
-            keymap = { preset = 'default' },
+            keymap = { preset = "default" },
 
             appearance = {
-                nerd_font_variant = 'mono'
+                nerd_font_variant = "mono"
             },
             completion = { documentation = { auto_show = true } },
             sources = {
-                default = { 'lsp', 'path', 'snippets', 'buffer' },
+                default = { "lsp", "path", "snippets", "buffer" },
             },
 
             fuzzy = { implementation = "prefer_rust_with_warning" }
