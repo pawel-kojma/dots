@@ -151,9 +151,6 @@ require("lazy").setup({
     },
     {
         'stevearc/oil.nvim',
-        ---@module 'oil'
-        ---@type oil.SetupOpts
-        -- Optional dependencies
         dependencies = { { "echasnovski/mini.icons", opts = {} } },
         config = function()
             require("oil").setup({
@@ -166,10 +163,28 @@ require("lazy").setup({
                 }
             })
         end,
-        -- dependencies = { "nvim-tree/nvim-web-devicons" }, -- use if you prefer nvim-web-devicons
-        -- Lazy loading is not recommended because it is very tricky to make it work correctly in all situations.
         lazy = false,
     },
     { 'akinsho/git-conflict.nvim', tag = "v2.1.0", config = true },
-    { 'sangdol/mintabline.vim' }
+    { 'sangdol/mintabline.vim' },
+    {
+        'saghen/blink.cmp',
+        dependencies = { 'rafamadriz/friendly-snippets' },
+
+        version = '1.*',
+        opts = {
+            keymap = { preset = 'default' },
+
+            appearance = {
+                nerd_font_variant = 'mono'
+            },
+            completion = { documentation = { auto_show = true } },
+            sources = {
+                default = { 'lsp', 'path', 'snippets', 'buffer' },
+            },
+
+            fuzzy = { implementation = "prefer_rust_with_warning" }
+        },
+        opts_extend = { "sources.default" }
+    }
 })
