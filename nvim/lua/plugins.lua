@@ -41,9 +41,32 @@ require("lazy").setup({
         dependencies = { "nvim-lua/plenary.nvim", "stevearc/oil.nvim" },
         config = function()
             local builtin = require("telescope.builtin")
-            vim.keymap.set("n", "<leader>sf", builtin.find_files,
-                { desc = "[S]earch [F]iles" })
-            vim.keymap.set("n", "<leader>sg", builtin.live_grep, { desc = "[S]earch with [G]rep" })
+            local oil = require("oil")
+            local map_absolute = function(bind, func, desc)
+                vim.keymap.set("n", bind, function()
+                        local active_clients = vim.lsp.get_clients()
+                        if active_clients[1] ~= nil then
+                            return func({ cwd = active_clients[1].config.root_dir })
+                        end
+                        return func()
+                    end,
+                    { desc = desc })
+            end
+            local map_relative = function(bind, func, desc)
+                vim.keymap.set("n", bind, function()
+                        local path = vim.fn.expand("%:p:h")
+                        if path:match("^oil://") then
+                            path = oil.get_current_dir()
+                        end
+                        return func({ cwd = path })
+                    end,
+                    { desc = desc }
+                )
+            end
+            map_absolute("<leader>sf", builtin.find_files, "[S]earch [F]iles")
+            map_absolute("<leader>gf", builtin.live_grep, "[G]rep from [F]iles")
+            map_relative("<leader>sr", builtin.find_files, "[S]earch Files [R]elative to directory")
+            map_relative("<leader>gr", builtin.live_grep, "[G]rep from files [R]elative to directory")
             vim.keymap.set("n", "<leader>sb", builtin.buffers, { desc = "[S]earch [B]uffers" })
             vim.keymap.set("n", "<leader>st", builtin.filetypes, { desc = "[S]earch File[t]ypes" })
             vim.keymap.set("n", "<leader>sw", builtin.grep_string, { desc = "[S]earch current [W]ord" })
