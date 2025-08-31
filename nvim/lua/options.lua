@@ -32,3 +32,6 @@ vim.opt.virtualedit = "block"
 -- Preview & Commands
 vim.opt.inccommand = "split"
 vim.opt.ignorecase = true
+
+-- LSP & Diagnostics
+vim.opt.signcolumn = "no"
