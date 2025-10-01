@@ -153,8 +153,9 @@ require("lazy").setup({
                 handlers = {
                     function(server_name)
                         if servers[server_name] ~= nil then
-                            local server = servers[server_name]
-                            require("lspconfig")[server_name].setup(server)
+                            local server_config = servers[server_name]
+                            vim.lsp.enable(server_name)
+                            vim.lsp.config(server_name, server_config)
                         end
                     end,
                 }

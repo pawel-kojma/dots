@@ -28,10 +28,10 @@ vim.keymap.set({ 'n', 'v' }, "<leader>tc", function() vim.cmd("tabclose") end)
 vim.keymap.set({ 'n', 'v' }, "<leader>th", function() vim.cmd("-tabmove") end)
 vim.keymap.set({ 'n', 'v' }, "<leader>tl", function() vim.cmd("+tabmove") end)
 vim.keymap.set({ 'n', 'v' }, "<leader>tn", function()
-    local t = { path = vim.fn.expand("%:h") }
-    local cmd = string.gsub("Oil '$path'", "%$(%w+)", t)
+    local oil = require('oil')
+    local path = vim.fn.expand("%:h")
     vim.cmd("tabnew")
-    vim.cmd(cmd)
+    oil.open(path)
 end)
 
 local is_diagnostics_on = false
