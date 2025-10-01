@@ -8,6 +8,7 @@ from pathlib import Path
 import logging
 import zipfile
 import os
+import sys
 
 logger = logging.getLogger(__name__)
 
@@ -22,6 +23,14 @@ def install_nvim_from_source():
         zipfile.ZipFile(f"{nvim_version}.zip", 'r').extractall(tmppath)
         nvim_repo_path = tmppath / f"neovim-{nvim_version}"
         os.chdir(nvim_repo_path)
+        compile_nvim = subprocess.run(
+            ['make CMAKE_BUILD_TYPE=RelWithDebInfo'], shell=True)
+        if compile_nvim.returncode != 0:
+            logger.info('Neovim installation failed')
+            sys.exit(1)
+        logger.info('Provide password...')
+        subprocess.run(
+            ['sudo', 'make', 'install'], shell=True)
 
 
 def install_nvim():
