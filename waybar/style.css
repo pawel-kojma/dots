@@ -1,0 +1,92 @@
+/* Global Reset */
+* {
+    border: none;
+    border-radius: 0;
+    font-family: "0xProto Nerd Font";
+    font-size: 14px;
+    min-height: 0;
+    color: white;
+}
+
+/* Main Window */
+window#waybar {
+    background-color: #000000; /* Black background */
+    border-bottom: 1px solid #333333;
+    transition-property: background-color;
+    transition-duration: .5s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+/* WORKSPACES */
+#workspaces button {
+    padding: 0 10px;
+    color: white;
+    border-radius: 4px;
+    margin: 5px 2px; /* Matches modules now */
+}
+
+/* The Active/Focused Workspace */
+#workspaces button.focused,
+#workspaces button.active {
+    background-color: #9B5DE0;
+    box-shadow: none;
+    color: #ffffff;
+}
+
+#workspaces button.urgent {
+    background-color: #eb4d4b;
+    color: #ffffff;
+}
+
+/* RIGHT MODULES STYLING 
+   Updated to match the 'box' style of the workspaces
+*/
+#clock,
+#battery,
+#cpu,
+#memory,
+#disk,
+#temperature,
+#backlight,
+#network,
+#wireplumber,
+#custom-media,
+#tray,
+#mode,
+#idle_inhibitor,
+#mpd {
+    padding: 0 10px;
+    margin: 5px 2px;       /* Spacing between boxes */
+    border-radius: 4px;    /* Rounded corners like workspaces */
+    background-color: #9B5DE0; /* Purple background to make them 'boxes' */
+    color: #ffffff;
+}
+
+#mode {
+    background-color: #64727D;
+    border-bottom: 3px solid #ffffff;
+}
+
+/* Battery States - Overrides the default purple box */
+#battery.charging, #battery.plugged {
+    color: #ffffff;
+    background-color: #26A65B;
+}
+
+#battery.critical:not(.charging) {
+    background-color: #f53c3c;
+    color: #ffffff;
+    animation-name: blink;
+    animation-duration: 0.5s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Network States */
+#network.disconnected {
+    background-color: #f53c3c;
+}
