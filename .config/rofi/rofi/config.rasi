@@ -1,0 +1,80 @@
+/*******************************************************************************
+ * ROFI Power Menu Theme
+ * User: Based on Wofi config
+ *******************************************************************************/
+
+configuration {
+    /* Ensure you have a Nerd Font installed for the icons to render */
+    font: "JetBrainsMono NF 24";
+    show-icons: false;
+}
+
+/* The Main Window */
+window {
+    /* Center the menu on screen */
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    
+    /* Dimensions */
+    width: 600px;
+    height: 160px; /* Fixed height for a clean row look */
+
+    /* Colors and Borders */
+    background-color: #282c34; /* Dark Grey */
+    border: 2px;
+    border-color: #61afef; /* Blue Accent */
+    border-radius: 12px;
+    
+    /* Padding inside the window */
+    padding: 20px;
+    
+    /* Remove default children so we only see the list */
+    children: [ listview ];
+}
+
+/* The List of Options */
+listview {
+    /* Horizontal Layout */
+    layout: horizontal;
+    columns: 4;
+    lines: 1;
+    
+    /* Spacing between buttons */
+    spacing: 20px;
+    
+    /* Background logic */
+    background-color: transparent;
+    text-color: #abb2bf;
+}
+
+/* The Individual Item (Button) */
+element {
+    background-color: #3e4452;
+    border-radius: 8px;
+    padding: 25px 10px 25px 10px; /* Top/Bottom padding centers the icon vertically */
+    cursor: pointer;
+}
+
+/* The Icon/Text inside the button */
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    horizontal-align: 0.5; /* Center text horizontally */
+    vertical-align: 0.5;   /* Center text vertically */
+    font: "JetBrainsMono NF 40"; /* Make icons huge */
+}
+
+/* Hover/Active States */
+element selected.normal {
+    background-color: #61afef; /* Blue accent on selection */
+    text-color: #282c34;       /* Dark text on selection */
+}
+
+/* Hide the input bar, prompt, and message box */
+inputbar {
+    enabled: false;
+}
+textbox {
+    enabled: false;
+}

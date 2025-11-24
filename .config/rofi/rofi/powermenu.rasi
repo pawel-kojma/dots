@@ -1,0 +1,79 @@
+* {
+    /* 1. Define the color palette */
+    theme-yellow:  rgba(255, 211, 105, 100%);
+    theme-dark:    rgba(34, 40, 49, 100%);
+    theme-gray:    rgba(57, 62, 70, 100%);
+    theme-white:   rgba(238, 238, 238, 100%);
+    
+    /* 2. Global Settings */
+    background-color: var(theme-dark);
+    text-color:       var(theme-white);
+    border-color:     var(theme-yellow);
+}
+
+configuration {
+    font: "0xProto Nerd Font 60";
+    show-icons: false;
+}
+
+/* The Main Window */
+window {
+    width:            500px; /* Slight increase to 500px to give the 60px font room to breathe */
+    padding:          20px;
+    background-color: var(theme-dark);
+    border:           2px;
+    border-color:     var(theme-yellow);
+    children:         [ listview ];
+    location:         center;
+    anchor:           center;
+}
+
+/* The Container */
+listview {
+    scrollbar:        false;
+    spacing:          10px;
+    columns:          4; 
+    lines:            1;
+    border:           0;
+    cycle:            false;
+    background-color: var(theme-dark);
+    flow:             horizontal;
+}
+
+/* --- ADDED SECTIONS TO FIX CENTERING --- */
+
+element {
+    background-color: var(theme-dark);
+    text-color:       var(theme-white);
+    orientation:      horizontal;
+    border-radius:    4px;
+    padding:          10px 0px; /* Vertical padding */
+    cursor:           pointer;
+}
+
+element-text {
+    /* This command centers the text horizontally */
+    horizontal-align: 0.5;
+    /* This command centers the text vertically */
+    vertical-align:   0.5;
+    
+    background-color: inherit;
+    text-color:       inherit;
+}
+
+/* Handle Colors on Hover/Selection */
+element selected {
+    background-color: var(theme-dark);
+    border:           2px;
+    border-color:     var(theme-yellow);
+    text-color:       var(theme-yellow);
+}
+
+element-text selected {
+    text-color:       var(theme-yellow);
+}
+
+/* Hide defaults */
+inputbar { enabled: false; }
+textbox { enabled: false; }
+message { enabled: false; }
