@@ -14,7 +14,7 @@ vim.opt.shiftwidth = 4
 vim.opt.wrap = true
 
 -- Scroll
-vim.opt.scrolloff = 999
+vim.opt.scrolloff = 20
 
 -- Cliboard
 vim.opt.clipboard = "unnamedplus"
