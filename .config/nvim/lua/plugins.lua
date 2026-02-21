@@ -55,7 +55,7 @@ require("lazy").setup({
 	},
 	{
 		"nvim-telescope/telescope.nvim",
-		tag = "0.1.8",
+		tag = "v0.2.1",
 		dependencies = { "nvim-lua/plenary.nvim", "stevearc/oil.nvim" },
 		config = function()
 			local builtin = require("telescope.builtin")
@@ -216,7 +216,6 @@ require("lazy").setup({
 		end,
 		lazy = false,
 	},
-	{ "akinsho/git-conflict.nvim", tag = "v2.1.0", config = true },
 	{ "sangdol/mintabline.vim" },
 	{
 		"saghen/blink.cmp",
@@ -244,6 +243,36 @@ require("lazy").setup({
 			fuzzy = { implementation = "prefer_rust_with_warning" },
 		},
 		opts_extend = { "sources.default" },
+	},
+	{
+		"akinsho/git-conflict.nvim",
+		version = "*",
+		config = function()
+			require("git-conflict").setup({
+				default_mappings = false, -- disable buffer local mapping created by this plugin
+				default_commands = true, -- disable commands created by this plugin
+				disable_diagnostics = false, -- This will disable the diagnostics in a buffer whilst it is conflicted
+				highlights = { -- They must have background color, otherwise the default color will be used
+					incoming = "DiffAdd",
+					current = "DiffText",
+				},
+			})
+			vim.keymap.set({ "n", "v" }, "<leader>cl", function()
+				vim.cmd("GitConflictListQf")
+			end)
+			vim.keymap.set({ "n", "v" }, "<leader>ci", function()
+				vim.cmd("GitConflictChooseTheirs")
+			end)
+			vim.keymap.set({ "n", "v" }, "<leader>cc", function()
+				vim.cmd("GitConflictChooseOurs")
+			end)
+			vim.keymap.set({ "n", "v" }, "<leader>ck", function()
+				vim.cmd("GitConflictPrevConflict")
+			end)
+			vim.keymap.set({ "n", "v" }, "<leader>cj", function()
+				vim.cmd("GitConflictNextConflict")
+			end)
+		end,
 	},
 	{
 		"stevearc/conform.nvim",
