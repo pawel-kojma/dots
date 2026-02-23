@@ -3,20 +3,39 @@ vim.g.mapleader = " "
 -- Oil
 vim.keymap.set("n", "<leader>x", "<CMD>Oil<CR>", { desc = "E[x]plore current directory" })
 
+-- Remap default keys
+
+vim.keymap.set("n", "u", "<Nop>")
+vim.keymap.set("n", "<C-u>", function()
+	vim.cmd("undo")
+end, { silent = true })
+
 -- Tabs
-vim.keymap.set({ "n", "v" }, ";", function()
-	local vcnt = vim.v.count1
-	if vim.fn.tabpagenr("$") >= vcnt then
-		vim.cmd("tabn" .. vcnt)
+
+for i = 1, 10 do
+	vim.keymap.set({ "n", "v" }, ";" .. i, function()
+		if vim.fn.tabpagenr("$") >= i then
+			vim.cmd("tabn" .. i)
+		end
+	end)
+end
+vim.keymap.set({ "n", "v" }, "th", function()
+	if vim.fn.tabpagenr() ~= 1 then
+		vim.cmd("-tabnext")
+	end
+end)
+vim.keymap.set({ "n", "v" }, "tl", function()
+	if vim.fn.tabpagenr("$") ~= vim.fn.tabpagenr() then
+		vim.cmd("+tabnext")
 	end
 end)
 vim.keymap.set({ "n", "v" }, "tc", function()
 	vim.cmd("tabclose")
 end)
-vim.keymap.set({ "n", "v" }, "th", function()
+vim.keymap.set({ "n", "v" }, "Th", function()
 	vim.cmd("-tabmove")
 end)
-vim.keymap.set({ "n", "v" }, "tl", function()
+vim.keymap.set({ "n", "v" }, "Tl", function()
 	vim.cmd("+tabmove")
 end)
 vim.keymap.set({ "n", "v" }, "tn", function()
