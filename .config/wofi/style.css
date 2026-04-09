@@ -1,0 +1,72 @@
+/* General Window Setup */
+window {
+    /* Transparent background allows the outer-box border-radius to show correctly */
+    background-color: transparent;
+    font-family: "CommitMono Nerd Font 60"; 
+    font-size: 14px;
+}
+
+/* The main container */
+#outer-box {
+    margin: 0px;
+    /* Pure black background */
+    background-color: #000000;
+    border: 3px solid #333333;
+    border-radius: 16px; 
+}
+
+/* The Search Bar */
+#input {
+    margin: 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: #1A1A1A; /* Slightly lighter than black for contrast */
+    color: #FFFFFF;
+}
+
+#input:focus {
+    /* Accent color highlight when typing */
+    box-shadow: 0px 0px 0px 2px #9B5DE0;
+}
+
+/* The Scrollable Area */
+#scroll {
+    margin: 5px;
+    border: none;
+}
+
+/* The List Container */
+#inner-box {
+    margin: 0px;
+    border: none;
+    background-color: transparent;
+}
+
+/* Individual List Items */
+#entry {
+    margin: 2px 10px;
+    padding: 10px;
+    border: none;
+    border-radius: 10px;
+    background-color: transparent;
+    color: #FFFFFF;
+}
+
+/* The Active/Selected Item */
+#entry:selected {
+    background-color: #9B5DE0; /* Accent Color */
+    color: #FFFFFF;
+    font-weight: bold;
+}
+
+/* Text inside entries */
+#text {
+    margin-left: 10px;
+}
+
+/* Images/Icons inside entries */
+#img {
+    margin-right: 5px;
+    background-color: transparent;
+}
